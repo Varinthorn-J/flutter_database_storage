@@ -24,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.purple,
           title: Text("6135512053"),
           actions: [
             IconButton(
@@ -54,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           vertical: 8, horizontal: 5),
                       child: ListTile(
                         leading: CircleAvatar(
+                          backgroundColor: Colors.purple[50],
                           radius: 30,
                           child: FittedBox(
                             child: Text(data.amount.toString()),

@@ -20,8 +20,8 @@ class FormScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("6135512053"),
           backgroundColor: Colors.purple,
+          title: Text("6135512053"),
         ),
         body: Padding(
           padding: const EdgeInsets.all(10.0),

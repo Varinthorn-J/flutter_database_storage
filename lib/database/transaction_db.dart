@@ -37,7 +37,6 @@ class TransactionDB {
       "title": statement.title,
       "lastnaem": statement.lastname,
       "address": statement.address,
-      //  "phone": statement.phone,
       "amount": statement.amount,
       "Email": statement.email,
       "Password": statement.password,
