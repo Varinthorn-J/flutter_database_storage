@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
             if (count <= 0) {
               return Center(
                 child: Text(
-                  "ไม่พบข้อมูล",
+                  "no data",
                   style: TextStyle(fontSize: 35),
                 ),
               );
@@ -50,21 +50,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemBuilder: (context, int index) {
                     Transactions data = provider.transactions[index];
                     return Card(
-                      elevation: 5,
+                      elevation: 8,
                       margin: const EdgeInsets.symmetric(
-                          vertical: 8, horizontal: 5),
+                          vertical: 8, horizontal: 10),
                       child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor: Colors.purple[50],
-                          radius: 30,
-                          child: FittedBox(
-                            child: Text(data.amount.toString()),
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.purple[50],
+                            radius: 30,
+                            child: FittedBox(
+                              child: Text(data.amount.toString()),
+                            ),
                           ),
-                        ),
-                        title: Text(data.title),
-                        subtitle:
-                            Text(DateFormat("dd/MM/yyyy").format(data.date)),
-                      ),
+                          title: Text(
+                              "${data.title} ${data.lastname}\n ${data.address}\n ${data.amount}\n ${data.email}\n ${data.password}")),
                     );
                   });
             }

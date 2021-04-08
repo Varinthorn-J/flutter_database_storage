@@ -9,16 +9,16 @@ import 'package:sembast/sembast_io.dart';
 class TransactionDB {
   //บริการเกียวกับฐานข้อมูล
 
-  String dbName; //เก็บชื่อฐานข้อมูล
+  String dbnames; //เก็บชื่อฐานข้อมูล
 
   // ถ้ายังไม่ถูกสร้าง => สร้าง
   // ถูกสร้างไว้แล้ว => เปิด
-  TransactionDB({this.dbName});
+  TransactionDB({this.dbnames});
 
   Future<Database> openDatabase() async {
     //หาตำแหน่งที่จะเก็บข้อมูล
     Directory appDirectory = await getApplicationDocumentsDirectory();
-    String dbLocation = join(appDirectory.path, dbName);
+    String dbLocation = join(appDirectory.path, dbnames);
     // สร้าง database
     DatabaseFactory dbFactory = await databaseFactoryIo;
     Database db = await dbFactory.openDatabase(dbLocation);
@@ -35,11 +35,11 @@ class TransactionDB {
     // json
     var keyID = store.add(db, {
       "title": statement.title,
-      "lastnaem": statement.lastname,
+      "lastname": statement.lastname,
       "address": statement.address,
       "amount": statement.amount,
-      "Email": statement.email,
-      "Password": statement.password,
+      "email": statement.email,
+      "password": statement.password,
       "date": statement.date.toIso8601String()
     });
     db.close();
@@ -62,7 +62,6 @@ class TransactionDB {
           title: record["title"],
           lastname: record["lastname"],
           address: record["address"],
-          //  phone: record["phone"],
           amount: record["amount"],
           email: record["email"],
           password: record["password"],

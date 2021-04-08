@@ -33,6 +33,7 @@ dependencies:
   sembast: ^2.4.8+1
   path_provider: ^1.6.27
   path: ^1.7.0
+  fluttertoast: ^8.0.3
 
 dev_dependencies:
   flutter_test:

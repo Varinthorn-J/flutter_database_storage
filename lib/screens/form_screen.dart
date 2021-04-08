@@ -13,6 +13,7 @@ class FormScreen extends StatelessWidget {
   final titleController = TextEditingController(); //รับค่าชื่อ
   final lastnameController = TextEditingController(); //รับค่านามสกุล
   final addressController = TextEditingController(); //รับค่าที่อยู่
+  final phoneController = TextEditingController(); //รับค่าเบอร์
   final amountController = TextEditingController(); //รับตัวเลข
   final emailController = TextEditingController(); //รับเมลล์
   final passwordController = TextEditingController(); //รับรหัส
@@ -27,8 +28,8 @@ class FormScreen extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
           child: Form(
             key: formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: ListView(
+              // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextFormField(
                   decoration: new InputDecoration(labelText: "Name"),
@@ -105,7 +106,7 @@ class FormScreen extends StatelessWidget {
                   },
                 ),
                 FlatButton(
-                  child: Text("add"),
+                  child: Text("Submit"),
                   color: Colors.purple,
                   textColor: Colors.white,
                   onPressed: () {
@@ -113,7 +114,6 @@ class FormScreen extends StatelessWidget {
                       var title = titleController.text;
                       var lastname = lastnameController.text;
                       var address = addressController.text;
-                      //  var phone = phoneController.text;
                       var amount = amountController.text;
                       var email = emailController.text;
                       var password = passwordController.text;

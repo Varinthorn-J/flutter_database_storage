@@ -2,8 +2,8 @@ class Transactions {
   String title; //ชื่อ
   String lastname;
   String address;
-  // String phone;
-  double amount; //จำนวนเงิน
+  String phone;
+  double amount; //เบอร์
   String email;
   String password;
   DateTime date; //วันที่ เวลา บันทึกรายการ
