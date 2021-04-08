@@ -39,6 +39,8 @@ class TransactionDB {
       "address": statement.address,
       //  "phone": statement.phone,
       "amount": statement.amount,
+      "Email": statement.email,
+      "Password": statement.password,
       "date": statement.date.toIso8601String()
     });
     db.close();
@@ -63,6 +65,8 @@ class TransactionDB {
           address: record["address"],
           //  phone: record["phone"],
           amount: record["amount"],
+          email: record["email"],
+          password: record["password"],
           date: DateTime.parse(record["date"])));
     }
     return transactionList;

@@ -13,8 +13,9 @@ class FormScreen extends StatelessWidget {
   final titleController = TextEditingController(); //รับค่าชื่อ
   final lastnameController = TextEditingController(); //รับค่านามสกุล
   final addressController = TextEditingController(); //รับค่าที่อยู่
-  // final phoneController = TextEditingController(); //รับค่าที่เบอร์โทร
   final amountController = TextEditingController(); //รับตัวเลข
+  final emailController = TextEditingController(); //รับเมลล์
+  final passwordController = TextEditingController(); //รับรหัส
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,18 +66,6 @@ class FormScreen extends StatelessWidget {
                     return null;
                   },
                 ),
-                // TextFormField(
-                //   decoration: new InputDecoration(labelText: "Phone"),
-                //   autofocus: false,
-                //   controller: phoneController,
-                //   validator: (String str) {
-                //     //ชื่อรายการเป็นค่าว่าง
-                //     if (str.isEmpty) {
-                //       return "phone plase";
-                //     }
-                //     return null;
-                //   },
-                // ),
                 TextFormField(
                   decoration: new InputDecoration(labelText: "Phone"),
                   keyboardType: TextInputType.number,
@@ -87,6 +76,30 @@ class FormScreen extends StatelessWidget {
                     }
                     if (double.parse(str) <= 0) {
                       return "เบอร์โทรศัพท์";
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  decoration: new InputDecoration(labelText: "email"),
+                  autofocus: false,
+                  controller: emailController,
+                  validator: (String str) {
+                    //ชื่อรายการเป็นค่าว่าง
+                    if (str.isEmpty) {
+                      return "Email plase";
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  decoration: new InputDecoration(labelText: "password"),
+                  autofocus: false,
+                  controller: passwordController,
+                  validator: (String str) {
+                    //ชื่อรายการเป็นค่าว่าง
+                    if (str.isEmpty) {
+                      return "Password plase";
                     }
                     return null;
                   },
@@ -102,13 +115,16 @@ class FormScreen extends StatelessWidget {
                       var address = addressController.text;
                       //  var phone = phoneController.text;
                       var amount = amountController.text;
+                      var email = emailController.text;
+                      var password = passwordController.text;
                       //เตรียมข้อมูล
                       Transactions statement = Transactions(
                           title: title,
                           lastname: lastname,
                           address: address,
-                          // phone: phone,
                           amount: double.parse(amount),
+                          email: email,
+                          password: password,
                           date: DateTime.now()); //object
 
                       //เรียก Provider

@@ -4,8 +4,16 @@ class Transactions {
   String address;
   // String phone;
   double amount; //จำนวนเงิน
+  String email;
+  String password;
   DateTime date; //วันที่ เวลา บันทึกรายการ
 
   Transactions(
-      {this.title, this.lastname, this.address, this.amount, this.date});
+      {this.title,
+      this.lastname,
+      this.address,
+      this.amount,
+      this.email,
+      this.password,
+      this.date});
 }
