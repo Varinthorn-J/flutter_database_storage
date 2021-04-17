@@ -27,4 +27,11 @@ class TransactionProvider with ChangeNotifier {
     //แจ้งเตือน Consumer
     notifyListeners();
   }
+
+  removeTransaction(Transactions statement) async {
+    var db = TransactionDB(dbnames: "transactions.db");
+    // await db.
+    await db.removeUser(statement);
+    notifyListeners();
+  }
 }

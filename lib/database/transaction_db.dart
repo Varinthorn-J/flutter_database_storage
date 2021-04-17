@@ -46,6 +46,17 @@ class TransactionDB {
     return keyID;
   }
 
+  Future removeUser(Transactions statement) async {
+    var db = await this.openDatabase();
+    var store = intMapStoreFactory.store("expense");
+    print(statement.email);
+    final finder = Finder(filter: Filter.equals('email', statement.email));
+    print(finder);
+    final res = await store.delete(db, finder: finder);
+    print(res);
+    db.close();
+  }
+
   //ดึงข้อมูล
 
   // ใหม่ => เก่า false มาก => น้อย

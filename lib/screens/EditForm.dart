@@ -1,22 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_database/models/Transactions.dart';
-import 'package:flutter_database/providers/transaction_provider.dart';
-// import 'package:flutter_database/screens/home_screen.dart';
-import 'package:provider/provider.dart';
 
-import '../main.dart';
+class EditForm extends StatefulWidget {
+  final String title; //ชื่อ
+  final String lastname;
+  final String address;
+  final String phone;
+  final double amount; //เบอร์
+  final String password;
 
-class FormScreen extends StatelessWidget {
+  EditForm({
+    Key key,
+    this.title,
+    this.lastname,
+    this.address,
+    this.amount,
+    this.password,
+    this.phone,
+  }) : super(key: key);
+
+  @override
+  _EditFormState createState() => _EditFormState();
+}
+
+class _EditFormState extends State<EditForm> {
   final formKey = GlobalKey<FormState>();
   double padding = 8;
   // controller
-  final titleController = TextEditingController(); //รับค่าชื่อ
-  final lastnameController = TextEditingController(); //รับค่านามสกุล
-  final addressController = TextEditingController(); //รับค่าที่อยู่
-  final phoneController = TextEditingController(); //รับค่าเบอร์
-  final amountController = TextEditingController(); //รับตัวเลข
-  final emailController = TextEditingController(); //รับเมลล์
-  final passwordController = TextEditingController(); //รับรหัส
+  TextEditingController titleController;
+  TextEditingController lastnameController;
+  TextEditingController addressController;
+  TextEditingController amountController;
+  TextEditingController passwordController;
+  @override
+  void initState() {
+    // TODO: implement initState TextEditingController titleController;
+    titleController = TextEditingController(text: widget.title);
+    lastnameController = TextEditingController(text: widget.lastname);
+    addressController = TextEditingController(text: widget.address);
+    final res = amountController =
+        TextEditingController(text: widget.amount.toString());
+    print(res);
+    passwordController = TextEditingController(text: widget.password);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,18 +109,6 @@ class FormScreen extends StatelessWidget {
                   },
                 ),
                 TextFormField(
-                  decoration: new InputDecoration(labelText: "email"),
-                  autofocus: false,
-                  controller: emailController,
-                  validator: (String str) {
-                    //ชื่อรายการเป็นค่าว่าง
-                    if (str.isEmpty) {
-                      return "Email plase";
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
                   decoration: new InputDecoration(labelText: "password"),
                   autofocus: false,
                   controller: passwordController,
@@ -117,29 +132,28 @@ class FormScreen extends StatelessWidget {
                       var lastname = lastnameController.text.trim();
                       var address = addressController.text.trim();
                       var amount = amountController.text.trim();
-                      var email = emailController.text.trim();
                       var password = passwordController.text.trim();
                       //เตรียมข้อมูล
-                      Transactions statement = Transactions(
-                          title: title,
-                          lastname: lastname,
-                          address: address,
-                          amount: double.parse(amount),
-                          email: email,
-                          password: password,
-                          date: DateTime.now()); //object
+                      // Transactions statement = Transactions(
+                      //     title: title,
+                      //     lastname: lastname,
+                      //     address: address,
+                      //     amount: double.parse(amount),
+                      //     email: email,
+                      //     password: password,
+                      //     date: DateTime.now()); //object
 
                       //เรียก Provider
-                      var provider = Provider.of<TransactionProvider>(context,
-                          listen: false);
-                      provider.addTransaction(statement);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              fullscreenDialog: true,
-                              builder: (context) {
-                                return MyHomePage();
-                              }));
+                      // var provider = Provider.of<TransactionProvider>(context,
+                      //     listen: false);
+                      // provider.addTransaction(statement);
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         fullscreenDialog: true,
+                      //         builder: (context) {
+                      //           return MyHomePage();
+                      //         }));
                     }
                   },
                 )
