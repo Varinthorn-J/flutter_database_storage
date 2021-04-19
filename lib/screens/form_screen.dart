@@ -21,7 +21,7 @@ class FormScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.purple,
+          backgroundColor: Colors.blueGrey,
           title: Text("Register"),
         ),
         body: Padding(
@@ -105,43 +105,48 @@ class FormScreen extends StatelessWidget {
                     return null;
                   },
                 ),
-                ElevatedButton(
-                  child: Text("Submit"),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.blue,
-                    onSurface: Colors.red,
-                  ),
-                  onPressed: () {
-                    if (formKey.currentState.validate()) {
-                      var title = titleController.text.trim();
-                      var lastname = lastnameController.text.trim();
-                      var address = addressController.text.trim();
-                      var amount = amountController.text.trim();
-                      var email = emailController.text.trim();
-                      var password = passwordController.text.trim();
-                      //เตรียมข้อมูล
-                      Transactions statement = Transactions(
-                          title: title,
-                          lastname: lastname,
-                          address: address,
-                          amount: double.parse(amount),
-                          email: email,
-                          password: password,
-                          date: DateTime.now()); //object
+                Column(
+                  children: [
+                    ElevatedButton(
+                      child: Text("Submit"),
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.green,
+                        onSurface: Colors.red,
+                      ),
+                      onPressed: () {
+                        if (formKey.currentState.validate()) {
+                          var title = titleController.text.trim();
+                          var lastname = lastnameController.text.trim();
+                          var address = addressController.text.trim();
+                          var amount = amountController.text.trim();
+                          var email = emailController.text.trim();
+                          var password = passwordController.text.trim();
+                          //เตรียมข้อมูล
+                          Transactions statement = Transactions(
+                              title: title,
+                              lastname: lastname,
+                              address: address,
+                              amount: double.parse(amount),
+                              email: email,
+                              password: password,
+                              date: DateTime.now()); //object
 
-                      //เรียก Provider
-                      var provider = Provider.of<TransactionProvider>(context,
-                          listen: false);
-                      provider.addTransaction(statement);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              fullscreenDialog: true,
-                              builder: (context) {
-                                return MyHomePage();
-                              }));
-                    }
-                  },
+                          //เรียก Provider
+                          var provider = Provider.of<TransactionProvider>(
+                              context,
+                              listen: false);
+                          provider.addTransaction(statement);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  fullscreenDialog: true,
+                                  builder: (context) {
+                                    return MyHomePage();
+                                  }));
+                        }
+                      },
+                    ),
+                  ],
                 )
               ],
             ),

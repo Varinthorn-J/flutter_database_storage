@@ -4,7 +4,6 @@ class EditForm extends StatefulWidget {
   final String title; //ชื่อ
   final String lastname;
   final String address;
-  final String phone;
   final double amount; //เบอร์
   final String password;
 
@@ -15,7 +14,6 @@ class EditForm extends StatefulWidget {
     this.address,
     this.amount,
     this.password,
-    this.phone,
   }) : super(key: key);
 
   @override
@@ -33,13 +31,12 @@ class _EditFormState extends State<EditForm> {
   TextEditingController passwordController;
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState TextEditingController titleController;
     titleController = TextEditingController(text: widget.title);
     lastnameController = TextEditingController(text: widget.lastname);
     addressController = TextEditingController(text: widget.address);
-    final res = amountController =
-        TextEditingController(text: widget.amount.toString());
-    print(res);
+    amountController = TextEditingController(text: widget.amount.toString());
     passwordController = TextEditingController(text: widget.password);
     super.initState();
   }
@@ -129,31 +126,15 @@ class _EditFormState extends State<EditForm> {
                   onPressed: () {
                     if (formKey.currentState.validate()) {
                       var title = titleController.text.trim();
+                      print(title);
                       var lastname = lastnameController.text.trim();
+                      print(lastname);
                       var address = addressController.text.trim();
+                      print(address);
                       var amount = amountController.text.trim();
+                      print(amount.toString());
                       var password = passwordController.text.trim();
-                      //เตรียมข้อมูล
-                      // Transactions statement = Transactions(
-                      //     title: title,
-                      //     lastname: lastname,
-                      //     address: address,
-                      //     amount: double.parse(amount),
-                      //     email: email,
-                      //     password: password,
-                      //     date: DateTime.now()); //object
-
-                      //เรียก Provider
-                      // var provider = Provider.of<TransactionProvider>(context,
-                      //     listen: false);
-                      // provider.addTransaction(statement);
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         fullscreenDialog: true,
-                      //         builder: (context) {
-                      //           return MyHomePage();
-                      //         }));
+                      print(password);
                     }
                   },
                 )

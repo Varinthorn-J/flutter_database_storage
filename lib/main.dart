@@ -46,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        backgroundColor: Colors.purple,
+        backgroundColor: Colors.blueGrey,
         body: TabBarView(
           children: [HomeScreen(), FormScreen()],
         ),

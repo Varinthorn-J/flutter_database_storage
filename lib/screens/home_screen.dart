@@ -17,12 +17,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List users = [];
   loadusers() async {
-    // final List<Transactions> res = await TransactionDB().loadAllData();
-    // final res = await TransactionDB().loadAllData();
-    // print(res);
-    // setState(() {
-    //   users = res;
-    // });
     Provider.of<TransactionProvider>(context, listen: false).initData();
   }
 
@@ -38,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.purple,
+          backgroundColor: Colors.blueGrey,
           title: Text("data"),
           actions: [
             IconButton(
@@ -69,41 +63,87 @@ class _HomeScreenState extends State<HomeScreen> {
                           vertical: 8, horizontal: 10),
                       child: Column(
                         children: [
-                          ElevatedButton(
-                              onPressed: () => {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => EditForm(
-                                                  title: data.title,
-                                                  lastname: data.lastname,
-                                                  address: data.address,
-                                                  password: data.password,
-                                                )))
-                                  },
-                              child: Text('Edit')),
-                          ElevatedButton(
-                              onPressed: () {
-                                provider
-                                    .removeTransaction(
-                                        Transactions(email: data.email))
-                                    .whenComplete(() {
-                                  Provider.of<TransactionProvider>(context,
-                                          listen: false)
-                                      .initData();
-                                });
-                              },
-                              child: Text('delete')),
-                          ListTile(
-                              leading: CircleAvatar(
-                                backgroundColor: Colors.purple[50],
-                                radius: 60,
-                                // child: FittedBox(
-                                //   child: Text(data.amount.toInt().toString()),
-                                // ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(" Name : ${data.title}"),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(" LastName : ${data.lastname}"),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(" Address : ${data.address}"),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                        " Tell : ${data.amount.toInt().toString()}"),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(" Email : ${data.email}"),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              // Padding(
+                              //   padding: const EdgeInsets.all(10),
+                              //   child: SizedBox(
+                              //     width: 70,
+                              //     height: 30,
+                              //     child: ElevatedButton(
+                              //         onPressed: () => {
+                              //               Navigator.push(
+                              //                   context,
+                              //                   MaterialPageRoute(
+                              //                       builder: (context) =>
+                              //                           EditForm(
+                              //                             title: data.title,
+                              //                             lastname:
+                              //                                 data.lastname,
+                              //                             address: data.address,
+                              //                             amount: data.amount,
+                              //                             password:
+                              //                                 data.password,
+                              //                           )))
+                              //             },
+                              //         child: Text('Edit')),
+                              //   ),
+                              // ),
+                              Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: SizedBox(
+                                  width: 80,
+                                  height: 30,
+                                  child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          primary: Colors.red),
+                                      onPressed: () {
+                                        provider
+                                            .removeTransaction(
+                                                Transactions(email: data.email))
+                                            .whenComplete(() {
+                                          Provider.of<TransactionProvider>(
+                                                  context,
+                                                  listen: false)
+                                              .initData();
+                                        });
+                                      },
+                                      child: Text('delete')),
+                                ),
                               ),
-                              title: Text(
-                                  "${data.title} ${data.lastname}\n ${data.address}\n ${data.amount.toInt().toString()}\n ${data.email}\n ${data.password}")),
+                            ],
+                          ),
                         ],
                       ),
                     );
